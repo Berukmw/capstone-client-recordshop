@@ -35,6 +35,13 @@ public class Product
     @Column(name = "image_url")
     private String imageUrl;
 
+    // method for if products are not hiding
+    @Column(name = "active")
+    private boolean active = true;
+
+    public boolean isActive() { return active; }
+    public void setActive(boolean active) { this.active = active; }
+
     public Product()
     {
     }
