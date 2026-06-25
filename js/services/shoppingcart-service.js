@@ -137,6 +137,16 @@ class ShoppingCartService {
         quantityDiv.innerText = `Quantity: ${item.quantity}`;
         outerDiv.appendChild(quantityDiv)
 
+        //tells removeFromCart which product to delete
+        let removeButton = document.createElement("button")
+        removeButton.classList.add("btn");
+        removeButton.innerText = "Remove";
+        // when clicked, tell removeFromCart exactly which product to delete
+        removeButton.addEventListener("click", () => this.removeFromCart(item.product.productId));
+        outerDiv.appendChild(removeButton);
+
+
+
 
         parent.appendChild(outerDiv);
     }
@@ -173,6 +183,31 @@ class ShoppingCartService {
              })
     }
 
+      removeFromCart(productId)
+        {       // service, delete this specifc item from our cart
+            const url = `${config.baseUrl}/cart/products/${productId}`;
+
+            axios.delete(url)
+                .then(response => {
+                    this.setCart(response.data); // updates cart
+                    this.updateCartDisplay(); // updates the cart icon
+                    this.loadCartPage(); // remakes the cart page so deleted item goes away
+                })
+                .catch(error => {
+
+                     const data = {
+                            error: "Empty cart failed."
+                     };
+
+                     templateBuilder.append("error", data, "errors")
+                     })
+
+
+
+
+
+        }
+
     updateCartDisplay()
     {
         try {
@@ -186,9 +221,6 @@ class ShoppingCartService {
         }
     }
 }
-
-
-
 
 
 document.addEventListener('DOMContentLoaded', () => {
