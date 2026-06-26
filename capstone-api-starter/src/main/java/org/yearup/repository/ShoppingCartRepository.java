@@ -13,7 +13,7 @@ public interface ShoppingCartRepository extends JpaRepository<CartItem, Integer>
     List<CartItem> findByUserId(int userId);
 
     CartItem findByUserIdAndProductId(int userId, int productId);
-   // hibernate throws "cannot reliably process remove" when deletin
+   // hibernate throws "cannot reliably process remove" when deleting
    // this is what was causing the 500 on delete /cart
     @Transactional
     void deleteByUserId(int userId);
@@ -21,3 +21,6 @@ public interface ShoppingCartRepository extends JpaRepository<CartItem, Integer>
     @Transactional
     void deleteByUserIdAndProductId(int userId, int productId);
 }
+
+
+
