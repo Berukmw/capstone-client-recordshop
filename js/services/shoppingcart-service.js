@@ -6,8 +6,8 @@ class ShoppingCartService {
         items:[],
         total:0
     };
-
-    addToCart(productId)
+    // added button to method signature for added to appear
+    addToCart(productId, button)
     {
         const url = `${config.baseUrl}/cart/products/${productId}`;
         // const headers = userService.getHeaders();
@@ -17,6 +17,12 @@ class ShoppingCartService {
                 this.setCart(response.data)
 
                 this.updateCartDisplay()
+
+                // quick visual confirmation right on the button itself
+                            const originalText = button.innerText;
+                            button.innerText = "Added!";
+                            setTimeout(() => { button.innerText = originalText; }, 1000);
+
 
             })
             .catch(error => {

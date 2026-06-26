@@ -11,10 +11,10 @@
         <div>
             <p>{{description}}</p>
         </div>
-
+        <!--  added button appears hear becuase of , this  -->
     </div>
     <div class="add-button">
-        <button class="btn btn-success" onclick="cartService.addToCart({{productId}})">Add to Cart</button>
+        <button class="btn btn-success" onclick="cartService.addToCart({{productId}}, this)">Add to Cart</button>
     </div>
 </div>
 {{/products}}
