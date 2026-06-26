@@ -108,8 +108,8 @@ function setMaxPrice(control)
     // const slider = document.getElementById("min-price");
     const label = document.getElementById("max-price-display")
     label.innerText = control.value;
-
-    const value = control.value != 500 ? control.value : "";
+    // changing max price to 2000 from 500
+    const value = control.value != 2000 ? control.value : "";
     productService.addMaxPriceFilter(value)
     productService.search();
 
